@@ -49,6 +49,7 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleRemove = (item) => {
+    reduxDispatch(removeCartItem(item.name));
   };
 
   // Calculate total cost based on quantity for an item
