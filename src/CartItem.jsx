@@ -5,7 +5,7 @@ import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
-  const dispatch = useDispatch();
+  const reduxDispatch = useDispatch();
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
@@ -27,6 +27,11 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleIncrement = (item) => {
+    // dispatch to update state
+    const incrementedQuantity =  item.quantity + 1;
+    reduxDispatch(
+      updateCartQuantity({ name: item.name, quantity: incrementedQuantity })
+    ); // dispatch to CartSlice
   };
 
   const handleDecrement = (item) => {
