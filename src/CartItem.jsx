@@ -35,7 +35,17 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleDecrement = (item) => {
-   
+    // dispatch to update state if there are quantities of this item
+    console.log(item.quantity);
+    if(item.quantity>1){
+      const decrementedQuantity =  item.quantity - 1;
+      reduxDispatch(
+        updateCartQuantity({ name: item.name, quantity: decrementedQuantity })
+      ); // dispatch to CartSlice
+    }
+    else{ // dispatch to remove item as we reached zero
+      reduxDispatch(removeCartItem(item.name));
+    }
   };
 
   const handleRemove = (item) => {
