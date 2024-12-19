@@ -6,6 +6,7 @@ import './CartItem.css';
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const reduxDispatch = useDispatch();
+//   const [totalQuantity, settotalQuantity] = useState(0);
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
@@ -36,7 +37,6 @@ const CartItem = ({ onContinueShopping }) => {
 
   const handleDecrement = (item) => {
     // dispatch to update state if there are quantities of this item
-    console.log(item.quantity);
     if(item.quantity>1){
       const decrementedQuantity =  item.quantity - 1;
       reduxDispatch(
