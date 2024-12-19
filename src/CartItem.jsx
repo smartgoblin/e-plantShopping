@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeItem, updateQuantity } from './CartSlice';
+import { removeCartItem, updateCartQuantity } from './CartSlice';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
@@ -9,7 +9,18 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
- 
+    console.log(cart);
+    let grandTotal = 0;
+    cart.forEach((c) => {
+      console.log('forEach');
+      console.log(c);
+      let total = 0;
+      total = c.cost * c.quantity;
+      console.log(total);
+      grandTotal += total;
+    });
+    console.log(grandTotal);
+    return grandTotal;
   };
 
   const handleContinueShopping = (e) => {
@@ -30,6 +41,9 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+      let total = 0;
+      total = item.cost * item.quantity;
+      return total;
   };
 
   return (
@@ -41,7 +55,7 @@ const CartItem = ({ onContinueShopping }) => {
             <img className="cart-item-image" src={item.image} alt={item.name} />
             <div className="cart-item-details">
               <div className="cart-item-name">{item.name}</div>
-              <div className="cart-item-cost">{item.cost}</div>
+              <div className="cart-item-cost">${item.cost}</div>
               <div className="cart-item-quantity">
                 <button className="cart-item-button cart-item-button-dec" onClick={() => handleDecrement(item)}>-</button>
                 <span className="cart-item-quantity-value">{item.quantity}</span>
