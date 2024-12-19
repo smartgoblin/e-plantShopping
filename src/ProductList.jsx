@@ -258,6 +258,7 @@ const handlePlantsClick = (e) => {
 };
 
    const handleContinueShopping = (e) => {
+       console.log(e);
     e.preventDefault();
     setShowCart(false);
   };
